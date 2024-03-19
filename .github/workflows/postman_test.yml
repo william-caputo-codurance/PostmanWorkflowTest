@@ -1,0 +1,29 @@
+name: PostmanTests
+on:
+  push:
+    branches: [ "main" ]
+
+defaults:
+  run:
+    working-directory: test/Postman
+    
+jobs:
+  test:
+    environment: staging
+    runs-on: ubuntu-latest
+    steps:
+      -
+        uses: actions/checkout@v23
+      -
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18"
+      -
+        name: "Install newman"
+        run: "npm install -g newman"
+      -
+        name: "Install newman reporter"
+        run: "npm install -g newman-reporter-htmlextra"
+      -
+        name: "Run tests"
+        run: "newman run ReadsOperations.postman_collection.json -e ReadsOperationsVariables.postman_environment.json -r htmlextra --reporter-htmlextra-export htmlreport.grml --reporter-htmlextra-darktheme > runreport1.html --env-var \"OmnibeesUser=CMOB1759\" --env-var \"OmnibeesPassword=Ob=1759\""
