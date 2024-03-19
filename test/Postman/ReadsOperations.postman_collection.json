@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "18484c14-dc92-41bb-805b-b3648acb208b",
+		"name": "Omnibees Reads",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31336559"
+	},
+	"item": [
+		{
+			"name": "OmniBees - Read Rooms",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var user = pm.environment.get(\"OmnibeesUser\")\r",
+							"var pass = pm.environment.get(\"OmnibeesPassword\")\r",
+							"\r",
+							"if(user && pass){\r",
+							"    var token = btoa(user + \":\" + pass)\r",
+							"    pm.request.headers.add({\r",
+							"        key: 'Authorization',\r",
+							"        value: `Bearer ${token}`\r",
+							"    });\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response type is xml\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/xml\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Should return rooms node and correct hotel id\", function () {\r",
+							"    var responseXML = pm.response.text(); \r",
+							"    pm.expect(responseXML).to.contain('rooms') \r",
+							"    pm.expect(responseXML).to.contain('room')     \r",
+							"    pm.expect(responseXML).to.contain('hotel_id=\"5440935\"') \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Should return rooms node and correct id for Double Room\", function () {\r",
+							"    var responseXML = pm.response.text(); \r",
+							"    pm.expect(responseXML).to.contain('rooms') \r",
+							"    pm.expect(responseXML).to.contain('room') \r",
+							"    pm.expect(responseXML).to.contain('id=\"754236485\"')\r",
+							"    pm.expect(responseXML).to.contain('hotel_id=\"5440935\"') \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Should return rooms node and correct id for Single Room\", function () {\r",
+							"    var responseXML = pm.response.text(); \r",
+							"    pm.expect(responseXML).to.contain('rooms') \r",
+							"    pm.expect(responseXML).to.contain('room') \r",
+							"    pm.expect(responseXML).to.contain('id=\"754236645\"')    \r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Should return rooms node and correct id for Triple Room\", function () {\r",
+							"    var responseXML = pm.response.text(); \r",
+							"    pm.expect(responseXML).to.contain('rooms') \r",
+							"    pm.expect(responseXML).to.contain('room') \r",
+							"    pm.expect(responseXML).to.contain('id=\"754236945\"')    \r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Should return rooms node and correct id for Family Room\", function () {\r",
+							"    var responseXML = pm.response.text(); \r",
+							"    pm.expect(responseXML).to.contain('rooms') \r",
+							"    pm.expect(responseXML).to.contain('room') \r",
+							"    pm.expect(responseXML).to.contain('id=\"754236595\"')    \r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-SHOW-CORRELATION-ID",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<request xmlns=\"http://www.opentravel.org/OTA/2003/05\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n <hotel_id>5440935</hotel_id>    \n</request>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://push-framework-stage.webbeds.com/request-dotw/cmob1759?request_type=rooms",
+					"protocol": "http",
+					"host": [
+						"push-framework-stage",
+						"webbeds",
+						"com"
+					],
+					"path": [
+						"request-dotw",
+						"cmob1759"
+					],
+					"query": [
+						{
+							"key": "request_type",
+							"value": "rooms"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OmniBees - Read Rates",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var user = pm.environment.get(\"OmnibeesUser\")\r",
+							"var pass = pm.environment.get(\"OmnibeesPassword\")\r",
+							"\r",
+							"if(user && pass){\r",
+							"    var token = btoa(user + \":\" + pass)\r",
+							"    pm.request.headers.add({\r",
+							"        key: 'Authorization',\r",
+							"        value: `Bearer ${token}`\r",
+							"    });\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response type is xml\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/xml\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Should return rooms node and correct hotel id\", function () {\r",
+							"    var responseXML = pm.response.text(); \r",
+							"    pm.expect(responseXML).to.contain('rates') \r",
+							"    pm.expect(responseXML).to.contain('rate')     \r",
+							"    pm.expect(responseXML).to.contain('hotel_id=\"5440935\"') \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Should return rates nodes and correct id for OMNIBEES_ONLINE_APR\", function () {\r",
+							"    var responseXML = pm.response.text(); \r",
+							"    pm.expect(responseXML).to.contain('rates') \r",
+							"    pm.expect(responseXML).to.contain('rate') \r",
+							"    pm.expect(responseXML).to.contain('id=\"OMNIBEES_ONLINE_APR\"')\r",
+							"    pm.expect(responseXML).to.contain('hotel_id=\"5440935\"') \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Should return rates nodes and correct id for OMNIBEES_ONLINE_APR\", function () {\r",
+							"    var responseXML = pm.response.text(); \r",
+							"    pm.expect(responseXML).to.contain('rates') \r",
+							"    pm.expect(responseXML).to.contain('rate') \r",
+							"    pm.expect(responseXML).to.contain('id=\"RPC_OFFLINE_TEST\"')\r",
+							"    pm.expect(responseXML).to.contain('hotel_id=\"5440935\"') \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-SHOW-CORRELATION-ID",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<request xmlns=\"http://www.opentravel.org/OTA/2003/05\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n <hotel_id>5440935</hotel_id>    \n</request>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://push-framework-stage.webbeds.com/request-dotw/cmob1759?request_type=rates",
+					"protocol": "http",
+					"host": [
+						"push-framework-stage",
+						"webbeds",
+						"com"
+					],
+					"path": [
+						"request-dotw",
+						"cmob1759"
+					],
+					"query": [
+						{
+							"key": "request_type",
+							"value": "rates"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
