@@ -52,7 +52,7 @@
 							"    var responseXML = pm.response.text(); \r",
 							"    pm.expect(responseXML).to.contain('rooms') \r",
 							"    pm.expect(responseXML).to.contain('room') \r",
-							"    pm.expect(responseXML).to.contain('id=\"754236485\"')\r",
+							"    pm.expect(responseXML).to.contain('id=\"754236485aaa\"')\r",
 							"    pm.expect(responseXML).to.contain('hotel_id=\"5440935\"') \r",
 							"});\r",
 							"\r",
