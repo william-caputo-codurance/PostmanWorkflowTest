@@ -26,4 +26,4 @@ jobs:
         run: "npm install -g newman-reporter-htmlextra"
       -
         name: "Run tests"
-        run: "newman run ReadsOperations.postman_collection.json -e ReadsOperationsVariables.postman_environment.json -r htmlextra --reporter-htmlextra-export htmlreport.grml --reporter-htmlextra-darktheme > runreport1.html --env-var \"OmnibeesUser=CMOB1759\" --env-var \"OmnibeesPassword=Ob=1759\""
+        run: "newman run ReadsOperations.postman_collection.json -e ReadsOperationsVariables.postman_environment.json -r htmlextra --reporter-htmlextra-export htmlreport.html --reporter-htmlextra-darktheme > runreport1.html --env-var \"OmnibeesUser=CMOB1759\" --env-var \"OmnibeesPassword=Ob=1759\""
